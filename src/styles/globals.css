@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --gradient-1: #808a98;
+    --gradient-2: #f7f7f7;
+}
+
+@media (prefers-color-scheme: dark) {
+
+}
+
+body {
+  
+}
+
+@layer utilities {
+ 
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), 50%, var(--gradient-1));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Dark themed scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+    width: 12px; /* Adjust the width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #333; /* Dark background for the track */
+    border-radius: 10px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555; /* Dark color for the thumb (scroll handle) */
+    border-radius: 10px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #777; /* Lighter color on hover */
+}

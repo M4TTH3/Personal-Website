@@ -1,0 +1,42 @@
+
+.galaxy {
+    width: 100vw;
+    height: 100vh;
+
+    width: 100dvw;
+    height: 100dvh;
+
+    position: fixed;
+
+    background-color: black;
+    overflow: hidden;
+    
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 1px;
+    height: 1px;
+
+    background-color: white;
+    border-radius: 50%;
+    animation: zoom 80s alternate infinite;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+        transform: rotate(-15deg);
+    }
+
+    100% {
+        transform: scale(1.5);
+        transform: rotate(30deg);
+    }
+}
