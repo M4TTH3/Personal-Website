@@ -42,6 +42,10 @@ body {
     border-color: linear-gradient(90deg, var(--gradient-dark-1), var(--gradient-dark-2), var(--gradient-dark-1));
 }
 
+.bg-gradient {
+    background: linear-gradient(45deg, var(--gradient-dark-1), var(--gradient-dark-2), 50%, var(--gradient-dark-1));
+}
+
 /* Dark themed scrollbar for WebKit browsers */
 ::-webkit-scrollbar {
     width: 12px; /* Adjust the width of the scrollbar */

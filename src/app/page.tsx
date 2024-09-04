@@ -1,5 +1,6 @@
 import Contact from "@/components/email";
 import Experiences from "@/components/experiences";
+import Footer from "@/components/footer";
 import Home from "@/components/home";
 import Navbar from "@/components/navbar";
 import Projects from "@/components/projects";
@@ -22,7 +23,7 @@ export default function Root() {
                 <Experiences />
                 <Contact />
             </main>
-            <footer className="h-96"></footer>
+            <Footer />
         </>
     );
 }

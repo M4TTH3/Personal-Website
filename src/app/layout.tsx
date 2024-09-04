@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import Galaxy from "@/components/galaxy";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import { Notifications } from "@mantine/notifications"
 
 import "@mantine/core/styles.css"; // Ensure it's before our styles
 import "@mantine/nprogress/styles.css";
+import "@mantine/notifications/styles.css";
 import "@/styles/galaxy.css";
 import "@/styles/globals.css";
 
@@ -31,7 +33,10 @@ export default function RootLayout({
                     <Galaxy />
                     <div className="absolute z-10 w-dvw h-dvh backdrop-blur-[1px]"></div>
                     <div className="absolute w-dvw h-dvh z-20 overflow-y-scroll text-white">
-                        <MantineProvider>{children}</MantineProvider>
+                        <MantineProvider>
+                            <Notifications />
+                            {children}
+                        </MantineProvider>
                     </div>
                 </div>
             </body>
