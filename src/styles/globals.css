@@ -5,6 +5,8 @@
 :root {
     --gradient-1: #808a98;
     --gradient-2: #f7f7f7;
+    --gradient-dark-1: #4b5d7a; /* Darker grayish-blue */
+    --gradient-dark-2: #c0c0c0; /* Darker gray */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,11 +21,25 @@ body {
  
 }
 
+.container {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .text-gradient {
     background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), 50%, var(--gradient-1));
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
+}
+
+.border-gradient {
+    border-color: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), 50%, var(--gradient-1));
+}
+
+.border-gradient-dark {
+    border-color: linear-gradient(90deg, var(--gradient-dark-1), var(--gradient-dark-2), var(--gradient-dark-1));
 }
 
 /* Dark themed scrollbar for WebKit browsers */
@@ -43,4 +59,8 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #777; /* Lighter color on hover */
+}
+
+.bold-resume {
+    font-weight: bold;
 }

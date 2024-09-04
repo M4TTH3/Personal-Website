@@ -13,7 +13,7 @@ export default function Galaxy() {
 
         let boxShadow = "";
         for (let i = 0; i < starCount; i++)
-            boxShadow += `${boxShadow === "" ? "": ", "}${rand(-50, 50)}vw ${rand(-50, 50)}vh ${rand(0, 2)}px ${rand(0, 2)}px white`;
+            boxShadow += `${boxShadow === "" ? "": ", "}${rand(-50, 50)}vw ${rand(-70, 70)}vh ${rand(0, 2)}px ${rand(0, 2)}px white`;
 
         ref.current?.style.setProperty("box-shadow", boxShadow);
     }, []);
