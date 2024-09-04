@@ -11,8 +11,8 @@ export default async function Home() {
             <h1 className="text-3xl sm:text-5xl text-gray-400 font-bold">
                 I'm <span className="text-gradient">Matthew Au-Yeung</span>...
             </h1>
-            <div className="relative min-h-[150px] overflow-hidden shadow-gray-500 shadow-sm rounded-lg">
-                <div className="absolute border-2 border-gradient bg-gray-400 opacity-20 backdrop-blur-lg w-full h-full"></div>
+            <div className="relative min-h-[150px] overflow-hidden shadow-gray-700 shadow-sm rounded-lg">
+                <div className="absolute bg-gray-400 bg-opacity-10 backdrop-blur-md w-full h-full"></div>
                 <StatsPanel />
             </div>
         </section>

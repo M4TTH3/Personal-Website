@@ -62,5 +62,6 @@ body {
 }
 
 .bold-resume {
-    font-weight: bold;
+    font-weight: 700;
+    color: white;
 }

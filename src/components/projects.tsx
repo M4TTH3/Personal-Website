@@ -5,7 +5,6 @@ import { Badge } from "@mantine/core";
 import Image from "next/image";
 import { HTMLProps } from "react";
 
-
 interface ProjectCardProps {
     title: string;
     tools: string[];
@@ -13,15 +12,33 @@ interface ProjectCardProps {
     link: string;
 }
 
-const ProjectCard = ({ title, tools, image, link, ...props }: ProjectCardProps & HTMLProps<HTMLAnchorElement>) => {
-
+const ProjectCard = ({
+    title,
+    tools,
+    image,
+    link,
+    ...props
+}: ProjectCardProps & HTMLProps<HTMLAnchorElement>) => {
     return (
         <a {...props} href={link}>
             <div className="group cursor-pointer h-52 lg:h-72 border-t-[1.5px] border-t-slate-300 rounded-lg backdrop-blur-sm shadow-gray-300 shadow-md flex flex-col p-4">
                 <div className="absolute z-10 left-0 top-0 h-full w-full bg-black opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex justify-center items-center">
                     <div className="w-[70%] flex flex-wrap gap-1 justify-center">
                         {tools.map((tool) => {
-                            return <Badge color="gray" key={tool}>{tool}</Badge>;
+                            return (
+                                <Badge
+                                    size="md"
+                                    variant="gradient"
+                                    gradient={{
+                                        from: "blue",
+                                        to: "gray",
+                                        deg: 90,
+                                    }}
+                                    key={tool}
+                                >
+                                    {tool}
+                                </Badge>
+                            );
                         })}
                     </div>
                 </div>
@@ -46,10 +63,9 @@ const ProjectCard = ({ title, tools, image, link, ...props }: ProjectCardProps &
             </div>
         </a>
     );
-}
+};
 
 export default function Projects() {
-
     return (
         <section
             id="Projects"
