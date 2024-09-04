@@ -1,3 +1,4 @@
+import Contact from "@/components/email";
 import Experiences from "@/components/experiences";
 import Home from "@/components/home";
 import Navbar from "@/components/navbar";
@@ -19,6 +20,7 @@ export default function Root() {
                 <Home />
                 <Projects />
                 <Experiences />
+                <Contact />
             </main>
             <footer className="h-96"></footer>
         </>

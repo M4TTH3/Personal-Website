@@ -38,8 +38,10 @@ export default function StatsPanelControl({ data }: StatsControlProps) {
         <div className="relative pt-4 pb-2 px-4 flex justify-between items-center sm:items-baseline">
             <SegmentedControl
                 classNames={{
-                    root: "bg-gray-400 shadow-gray-300 shadow-sm",
+                    root: "bg-gray-500 shadow-gray-300 shadow-sm",
+                    label: "data-[active=true]:text-white data-[active=true]:font-bold text-gray-300 hover:text-black",
                 }}
+                radius="md"
                 color="gray"
                 withItemsBorders={false}
                 data={data}

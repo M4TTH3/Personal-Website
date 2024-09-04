@@ -23,6 +23,7 @@ import axios from "axios";
 import { HTMLProps } from "react";
 import StatsPanelControl, { Controls } from "./statsPanelControl";
 import { faStrava } from "@fortawesome/free-brands-svg-icons";
+import assert from "assert";
 
 const updateRefreshToken = async (model: StravaToken): Promise<void> => {
     const body: StravaRefreshRequest = {
@@ -57,29 +58,39 @@ const getStravaContents = async (): Promise<Stats> => {
         !statsModel ||
         new Date().getDate() !== statsModel.updatedAt.getDate()
     ) {
-        const statsContents = await axios.get(
-            `https://www.strava.com/api/v3/athletes/${model.id}/stats`,
-            {
-                headers: {
-                    Authorization: `Bearer ${model.accessToken}`,
-                },
+        try {
+            const statsContents = await axios.get(
+                `https://www.strava.com/api/v3/athletes/${model.id}/stats`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${model.accessToken}`,
+                    },
+                }
+            );
+            const stats = statsContents.data as Stats;
+
+            if (!statsModel)
+                await StravaStat.create({
+                    id: model.id,
+                    stats: stats as Stats,
+                });
+            else {
+                const previousUpdatedAt = statsModel.updatedAt;
+                // statsModel.changed("updatedAt", true);
+                statsModel.stats = stats;
+                await statsModel.save();
+
+                assert(statsModel.updatedAt === previousUpdatedAt);
             }
-        );
 
-        if (!statsContents) throw new Error("No Strava stats found");
-        const stats = statsContents.data as Stats;
-
-        if (!statsModel)
-            await StravaStat.create({ id: model.id, stats: stats as Stats });
-        else {
-            statsModel.changed("updatedAt", true);
-            await statsModel.update("stats", stats);
+            return stats;
+        } catch {
+            console.log('strava error')
+            return statsModel!.stats;
         }
-
-        return stats;
     }
 
-    return statsModel!.stats;
+    return statsModel.stats;
 };
 
 const getLeetcodeContents = async (): Promise<LeetcodeResponse | null> => {
@@ -100,7 +111,7 @@ const getLeetcodeContents = async (): Promise<LeetcodeResponse | null> => {
         `,
     });
 
-    if (!res) return null;
+    if (!res || res.status !== 200) return null;
     return res.data as LeetcodeResponse;
 };
 

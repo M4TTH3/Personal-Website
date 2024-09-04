@@ -28,14 +28,8 @@ StravaStat.init(
             type: DataTypes.JSON,
             allowNull: false,
         },
-        createdAt: {
-            type: DataTypes.DATE,
-            allowNull: false
-        },
-        updatedAt: {
-            type: DataTypes.DATE,
-            allowNull: false
-        }
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE
     },
     {
         sequelize,
