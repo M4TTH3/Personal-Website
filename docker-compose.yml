@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: personal-website
     ports:
       - "5001:3000"
     env_file:
