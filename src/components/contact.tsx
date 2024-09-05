@@ -65,7 +65,7 @@ export default function Contact() {
             <div className="container px-4 lg:px-2 flex flex-col sm:flex-row gap-10 text-white">
                 <div className="flex-[1]">
                     <h2 className="text-4xl font-bold text-gradient">
-                        Let's Get in Touch.
+                        Let&apos;s Get in Touch.
                     </h2>
                     <p className="text-xl text-gray-400 mt-2">
                         Feel free to reach out for collaborations, questions, or

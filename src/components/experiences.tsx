@@ -231,7 +231,7 @@ export default function Experiences() {
                         lineVariant="dotted"
                     >
                         <Text className="text-gray-50" c="dimmed" size="sm">
-                            McPhail's Cycle & Sports Ltd.
+                            McPhail&apos;s Cycle & Sports Ltd.
                         </Text>
                         <div className="flex gap-1 mt-2">
                             <DateRangeBadge start="May 2021" end="Present" />

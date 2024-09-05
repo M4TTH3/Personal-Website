@@ -65,7 +65,7 @@ const MobileNavBar = () => {
         window.addEventListener('resize', closeIfMediumWidth);
 
         return () => window.removeEventListener('resize', closeIfMediumWidth);
-    }, [])
+    }, [close])
 
     return (
         <>
