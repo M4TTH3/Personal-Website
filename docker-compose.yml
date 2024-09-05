@@ -1,12 +1,21 @@
 version: '3.8'
 
 services:
-  personal-website:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: personal-website
-    ports:
-      - "5001:3000"
-    env_file:
-      - .env
+    personal-website:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                DATABASE_URL: ${DATABASE_BUILD_URL}
+        container_name: personal-website
+        ports:
+            - "5001:3000"
+        env_file:
+            - .env
+        networks:
+            - apps_default 
+        restart: unless-stopped
+
+networks:
+    apps_default:
+        external: true

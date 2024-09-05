@@ -1,4 +1,4 @@
-FROM node:18-alpine AS base
+FROM node:20-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN npm install -g npm@10.8.3
+RUN npm install -g npm@latest
 RUN npm ci
 
 
@@ -23,7 +23,12 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN npm run build;
+# IMPORTANT! Build from Host Network
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
+
+RUN npm install -g npm@latest
+RUN npm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
