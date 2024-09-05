@@ -6,7 +6,7 @@ export default async function Home() {
     return (
         <section
             id="Home"
-            className="container px-4 lg:px-2 py-16 mt-24 flex flex-col gap-5"
+            className="container px-4 lg:px-2 py-16 mt-8 sm:mt-24 flex flex-col gap-5"
         >
             <h1 className="text-3xl sm:text-5xl text-gray-400 font-bold">
                 I'm <span className="text-gradient">Matthew Au-Yeung</span>...

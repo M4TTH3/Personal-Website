@@ -37,7 +37,7 @@ export default function Experiences() {
     return (
         <section
             id="Experiences"
-            className="container mt-4 sm:mt-32 p-2 backdrop-blur-sm"
+            className="container mt-12 sm:mt-32 p-2 backdrop-blur-sm"
         >
             <h1 className="text-5xl font-bold text-gradient">Experiences</h1>
             <div className="mt-5 py-4 pr-3 sm:px-5 rounded-xl bg-opacity-5 bg-gray-400">

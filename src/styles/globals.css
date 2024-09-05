@@ -49,11 +49,11 @@ body {
 /* Dark themed scrollbar for WebKit browsers */
 ::-webkit-scrollbar {
     width: 12px; /* Adjust the width of the scrollbar */
+    background: transparent;
 }
 
 ::-webkit-scrollbar-track {
     background: #333; /* Dark background for the track */
-    border-radius: 10px; /* Rounded corners */
 }
 
 ::-webkit-scrollbar-thumb {

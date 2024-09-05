@@ -1,4 +1,4 @@
-import Contact from "@/components/email";
+import Contact from "@/components/contact";
 import Experiences from "@/components/experiences";
 import Footer from "@/components/footer";
 import Home from "@/components/home";
@@ -13,8 +13,7 @@ export default function Root() {
         <>
             <header>
                 <NavigationProgress color="gray" />
-                <NavWatch />
-
+                <NavWatch/>
                 <Navbar />
             </header>
             <main className="">

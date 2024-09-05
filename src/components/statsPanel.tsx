@@ -56,9 +56,9 @@ const getStravaContents = async (): Promise<Stats> => {
 
     if (
         !statsModel ||
-        new Date().getDate() !== statsModel.updatedAt.getDate()
+        new Date().getUTCDate() !== statsModel.updatedAt.getDate()
     ) {
-        try {
+        try{
             const statsContents = await axios.get(
                 `https://www.strava.com/api/v3/athletes/${model.id}/stats`,
                 {
@@ -75,17 +75,14 @@ const getStravaContents = async (): Promise<Stats> => {
                     stats: stats as Stats,
                 });
             else {
-                const previousUpdatedAt = statsModel.updatedAt;
-                // statsModel.changed("updatedAt", true);
+                statsModel.changed("updatedAt", true);
                 statsModel.stats = stats;
                 await statsModel.save();
-
-                assert(statsModel.updatedAt === previousUpdatedAt);
             }
 
             return stats;
-        } catch {
-            console.log('strava error')
+        } catch (e) {
+            console.log(e);
             return statsModel!.stats;
         }
     }

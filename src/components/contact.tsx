@@ -61,7 +61,7 @@ export default function Contact() {
     const inputClassName = "bg-opacity-10 bg-white text-gray-200 font-bold";
 
     return (
-        <section id="Contact" className="my-5 sm:my-32">
+        <section id="Contact" className="mt-5 mb-16 sm:my-32">
             <div className="container px-4 lg:px-2 flex flex-col sm:flex-row gap-10 text-white">
                 <div className="flex-[1]">
                     <h2 className="text-4xl font-bold text-gradient">

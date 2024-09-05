@@ -28,11 +28,11 @@ export default function RootLayout({
             <head>
                 <ColorSchemeScript />
             </head>
-            <body className={ubuntu.className}>
+            <body className={`${ubuntu.className} overflow-x-hidden w-dvw h-dvh`}>
                 <div className="relative">
                     <Galaxy />
                     <div className="absolute z-10 w-dvw h-dvh backdrop-blur-[1px]"></div>
-                    <div className="absolute w-dvw h-dvh z-20 overflow-y-scroll text-white">
+                    <div className="absolute w-dvw h-dvh z-20 text-white">
                         <MantineProvider>
                             <Notifications />
                             {children}
