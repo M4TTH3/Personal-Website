@@ -19,7 +19,6 @@ import {
     faLeaf,
     faFire,
 } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 import { HTMLProps } from "react";
 import StatsPanelControl, { Controls } from "./statsPanelControl";
 import { faStrava } from "@fortawesome/free-brands-svg-icons";
@@ -33,10 +32,17 @@ const updateRefreshToken = async (model: StravaToken): Promise<void> => {
         refresh_token: model.refreshToken,
         grant_type: "refresh_token",
     };
-    const response = await axios.post(STRAVA_REFRESH_ENDPOINT, body);
+    const response = await fetch(STRAVA_REFRESH_ENDPOINT, {
+        method: "POST",
+        cache: "no-store",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+    });
 
     if (!response) throw new Error("No Strava token found");
-    const refreshResponse = response.data as StravaRefreshResponse;
+    const refreshResponse = await response.json() as StravaRefreshResponse;
 
     model.accessToken = refreshResponse.access_token;
     model.expiresAt = refreshResponse.expires_at;
@@ -59,16 +65,19 @@ const getStravaContents = async (): Promise<Stats> => {
         !statsModel ||
         new Date().getUTCDate() !== statsModel.updatedAt.getDate()
     ) {
-        try{
-            const statsContents = await axios.get(
+        try {
+            const statsContents = await fetch(
                 `https://www.strava.com/api/v3/athletes/${model.id}/stats`,
                 {
+                    method: 'GET',
                     headers: {
                         Authorization: `Bearer ${model.accessToken}`,
                     },
+                    cache: 'no-store'
                 }
             );
-            const stats = statsContents.data as Stats;
+          
+            const stats = await statsContents.json() as Stats;
 
             if (!statsModel)
                 await StravaStat.create({
@@ -93,24 +102,32 @@ const getStravaContents = async (): Promise<Stats> => {
 
 const getLeetcodeContents = async (): Promise<LeetcodeResponse | null> => {
     const endpoint = "https://leetcode.com/graphql";
-    const res = await axios.post(endpoint, {
-        query: `{
-            matchedUser(username: "m4tth3") {
-                username
-                submitStats: submitStatsGlobal {
-                    acSubmissionNum {
-                        difficulty
-                        count
-                        submissions
+    const content = await fetch(endpoint, {
+        method: "POST",
+        cache: "no-store",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            query: `{
+                matchedUser(username: "m4tth3") {
+                    username
+                    submitStats: submitStatsGlobal {
+                        acSubmissionNum {
+                            difficulty
+                            count
+                            submissions
+                        }
                     }
                 }
             }
-        }
-        `,
+            `,
+        })
     });
 
-    if (!res || res.status !== 200) return null;
-    return res.data as LeetcodeResponse;
+    if (!content || content.status !== 200) return null;
+   
+    return await content.json() as LeetcodeResponse;
 };
 
 const StatsDisplay = ({
