@@ -23,7 +23,8 @@ import axios from "axios";
 import { HTMLProps } from "react";
 import StatsPanelControl, { Controls } from "./statsPanelControl";
 import { faStrava } from "@fortawesome/free-brands-svg-icons";
-import assert from "assert";
+
+export const dynamic = 'force-dynamic';
 
 const updateRefreshToken = async (model: StravaToken): Promise<void> => {
     const body: StravaRefreshRequest = {
