@@ -148,7 +148,7 @@ const StatsDisplay = ({
             {icon && (
                 <FontAwesomeIcon
                     icon={icon}
-                    className="absolute w-full h-full my-auto left-0 opacity-[0.02]"
+                    className="absolute w-full h-full my-auto left-0 opacity-[0.03]"
                 />
             )}
             <div className="z-20 flex-[2] font-bold flex items-end justify-center">

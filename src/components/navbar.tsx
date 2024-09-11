@@ -40,9 +40,9 @@ const DesktopNavBar = () => {
                     href="/Resume.pdf"
                     target="_blank"
                     title="Resume"
-                    className="ml-2 flex items-center"
+                    className="text-gradient"
                 >
-                    <FontAwesomeIcon icon={faFile} className="h-6" />
+                    Resumé
                 </a>
             </div>
         </div>
