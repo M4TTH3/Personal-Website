@@ -8,7 +8,13 @@ const MAX_CONNECTIONS = parseInt(process.env.CHESS_MAX_CONNECTIONS ?? "20");
 let activeConnections = 0;
 
 export default function ChessServer(httpServer) {
-    const io = new Server(httpServer);
+    const io = new Server(httpServer, {
+        cors: {
+            origin: ["http://localhost:3000", "https://mattheway.com"],
+            methods: ["GET", "POST"]
+        },
+        transports: ['websocket']
+    });
 
     io.on('connection', (socket) => {
         if (activeConnections >= MAX_CONNECTIONS) {

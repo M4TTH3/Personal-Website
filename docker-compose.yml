@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
     personal-website:
@@ -13,7 +13,19 @@ services:
         env_file:
             - .env
         networks:
-            - apps_default 
+            - apps_default
+        restart: unless-stopped
+        depends_on:
+            - personal-website-express
+    personal-website-express:
+        build:
+            context: ./websockets
+            dockerfile: Dockerfile
+        container_name: personal-website-express
+        ports:
+            - "5002:3001"
+        networks:
+            - apps_default
         restart: unless-stopped
 
 networks:

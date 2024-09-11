@@ -1,8 +1,16 @@
 "use client";
 
-import { socket } from "@/sockets/chessSocket";
 import { Button, Select } from "@mantine/core";
 import React, { useEffect, useRef, useState } from "react";
+import { io } from "socket.io-client";
+ 
+const socket = io(
+    process.env.CHESS_SOCKET_URL ?? "http://localhost:3001",
+    {
+        transports: ["websocket"],
+        upgrade: false
+    }
+);
 
 interface ChessGameJSON {
     check?: boolean;
@@ -118,7 +126,8 @@ export default function ChessGame() {
 
     useEffect(() => {
         setSending(prev => {
-            if (prev && options.opponent !== "human") socket.emit("move", "move")
+            if (prev && options.opponent !== "human") setTimeout(() => socket.emit("move", "move"), 250)
+            
             return false;
         });
 
@@ -136,7 +145,7 @@ export default function ChessGame() {
         }
     }, [game, setSending, socket.disconnected]);
 
-    const start = () => {
+    const start = async () => {
         socket.emit("start", options);
         setClicked(null);
     };
