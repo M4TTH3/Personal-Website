@@ -84,6 +84,7 @@ const ChessPiece = ({
 };
 
 export default function ChessGame() {
+    const [connected, setConnected] = useState(false);
     const [sending, setSending] = useState(false);
     const [clicked, setClicked] = useState<string | null>(null);
     const [options, setOptions] = useState<ChessGameOptions>({
@@ -122,7 +123,18 @@ export default function ChessGame() {
             }
             setGame(data);
         });
-    }, [setGame, setClicked, setSending]);
+
+        const connect = () => setConnected(true);
+        const disconnect = () => setConnected(false);
+        socket.on("connect", connect);
+        socket.on("disconnect", disconnect);
+
+        return () => {
+            socket.off("data");
+            socket.off("connect", connect);
+            socket.off("disconnect", disconnect);
+        };
+    }, [setGame, setClicked, setSending, setConnected]);
 
     useEffect(() => {
         setSending(prev => {
@@ -132,9 +144,9 @@ export default function ChessGame() {
         });
 
         overlayRef.current!.style.display = "none";
-        if (game.state === 1 || game.state === 2 || socket.disconnected) {
+        if (game.state === 1 || game.state === 2 || !connected) {
             overlayRef.current!.style.display = "flex";
-            overlayRef.current!.firstChild!.textContent = socket.disconnected
+            overlayRef.current!.firstChild!.textContent = !connected
                 ? "Waiting for connection..."
                 : game?.state === 1
                 ? game?.side === "white"
@@ -143,7 +155,7 @@ export default function ChessGame() {
                 : "Stalemate!";
             return;
         }
-    }, [game, setSending, socket.disconnected]);
+    }, [game, setSending, connected]);
 
     const start = async () => {
         socket.emit("start", options);

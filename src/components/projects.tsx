@@ -102,7 +102,7 @@ export default function Projects() {
                     title="Chess"
                     tools={["C++", "XWindow", "Next.js", "Socket.io"]}
                     image="/chess.png"
-                    link=""
+                    link="/chess"
                 />
                 <ProjectCard
                     title="Poster Scan"
