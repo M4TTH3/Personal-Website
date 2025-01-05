@@ -67,9 +67,9 @@ const ChessPiece = ({
     useEffect(() => {
         if (ref.current) {
             const black = char === char.toLowerCase();
-            const side = black ? 'black' : 'white';
+            const side = black ? "#3730a3" : "white";
             
-            if (curSide === side && clicked === loc) ref.current.style.color = black ? "#4B0082" : "#D8BFD8";
+            if (curSide === side && clicked === loc) ref.current.style.color = black ? "#4338ca" : "#D8BFD8";
             else ref.current.style.color = side;
         }
     }, [clicked, ref, curSide]);

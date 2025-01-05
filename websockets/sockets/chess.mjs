@@ -5,7 +5,7 @@ import { Server } from "socket.io";
 const chessExecPath = path.resolve('./', 'chessExec'); // Place the chess program into the same directory
 
 const MAX_CONNECTIONS = parseInt(process.env.CHESS_MAX_CONNECTIONS ?? "20");
-let activeConnections = 0;
+const connections = new Set();
 
 export default function ChessServer(httpServer) {
     const io = new Server(httpServer, {
@@ -17,13 +17,13 @@ export default function ChessServer(httpServer) {
     });
 
     io.on('connection', (socket) => {
-        if (activeConnections >= MAX_CONNECTIONS) {
+        if (connections.size >= MAX_CONNECTIONS) {
             console.log("Connection limit reached. Rejecting new connection.");
             socket.disconnect();
             return;
         }
 
-        activeConnections++;
+        connections.add(socket.id);
         
         let child = null;
 
@@ -55,11 +55,13 @@ export default function ChessServer(httpServer) {
 
             socket.on("disconnect", () => {
                 console.log('disconnecting');
-                activeConnections--;
+                connections.delete(socket.id);
                 child?.kill();
+
+                process.removeAllListeners("exit"); // Remove the above listener
             });
         } catch {
-            activeConnections--;
+            connections.delete(socket.id);
             child?.kill();
             socket.disconnect();
         }

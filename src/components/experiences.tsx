@@ -33,6 +33,99 @@ const DateRangeBadge = ({ start, end }: { start: string; end: string }) => {
     return <ResumeTopBadge text={`${start} - ${end}`} />
 };
 
+interface TimelineResumeItemProps {
+    title: string;
+    bullet: ReactNode;
+    companyName: string;
+    location: string;
+    startDate: string;
+    endDate: string;
+    points: Array<string>;
+    tools?: Array<string>;
+}
+
+const TimelineResumeItem = ({
+    title,
+    bullet,
+    companyName,
+    location,
+    startDate,
+    endDate,
+    points,
+    tools
+}: TimelineResumeItemProps
+) => {
+    const parseBold = (s: string): Array<string | ReactNode> => {
+        const contents: Array<string | ReactNode> = [];
+        let bold = false; // Whether we've reached a **
+        let start = 0
+
+        for (let i = 0; i < s.length; ++i) {
+            const c = s[i];
+
+            // We look one behind for **
+            if (c === '*' && i > 0 && s[i - 1] === '*') {
+                const tmp = s.substring(start, i - 1);
+                if (bold) {
+                    if (tmp !== "") contents.push(
+                        <span className="bold-resume">
+                            {tmp}
+                        </span>
+                    );
+
+                    bold = false;
+                    
+                } else {
+                    if (tmp !== "") contents.push(tmp);
+                    bold = true;
+                }
+
+                start = i + 1; // Bold we start AFTER the *
+            }
+        }
+
+        if (bold === true) throw Error("Invalid string for contents");
+        if (start < s.length) contents.push(s.substring(start));
+
+        return contents;
+    }
+
+    return (
+        <Timeline.Item title={title} bullet={bullet}>
+            <Text className="text-gray-50" c="dimmed" size="sm">
+                {companyName}
+            </Text>
+            <div className="flex gap-1 mt-2">
+                <DateRangeBadge start={startDate} end={endDate} />
+                <ResumeTopBadge text={location} />
+            </div>
+            <List
+                listStyleType="disc"
+                className="mt-4 text-gray-300 w-full pr-2 sm:pr-0"
+                size="sm"
+            >
+                {points.map((val, index) => {
+                    // Parse ** ... ** as a bolded item
+                    const contents = parseBold(val);
+
+                    return (
+                        <List.Item key={index}>
+                            {contents.map((s) => s)}
+                        </List.Item>
+                    );
+                })}
+            </List>
+            {tools && (
+                <div className="mt-6 flex flex-wrap gap-1">
+                    {tools.map((val, index) => (
+                        <ToolBadge tool={val} key={index} />
+                    ))}
+                </div>
+            )}
+        </Timeline.Item>
+    );
+}
+
 export default function Experiences() {
     return (
         <section
@@ -47,7 +140,48 @@ export default function Experiences() {
                         itemTitle: "text-2xl font-bold text-gradient",
                     }}
                 >
-                    <Timeline.Item
+                    <TimelineResumeItem
+                        title="Software Developer"
+                        bullet={
+                            <Image
+                                alt="Ford Motors Company"
+                                className="object-contain"
+                                fill
+                                src="/ford-motors.png"
+                            />
+                        }
+                        companyName="Ford Motors Company"
+                        location="Waterloo, ON"
+                        startDate="Jan 2025"
+                        endDate="Present"
+                        points={[
+                            "Developing mobile integration features for Ford's Infotainment system using Kotlin",
+                        ]}
+                        tools={["Kotlin", "AOSP"]}
+                    />
+                    <TimelineResumeItem
+                        title="Compilers Research Assistant"
+                        bullet={
+                            <Image
+                                alt="University of Waterloo"
+                                className="object-contain"
+                                fill
+                                src="/uwaterloo-logo.png"
+                            />
+                        }
+                        companyName="University of Waterloo"
+                        location="Waterloo, ON"
+                        startDate="May 2024"
+                        endDate="Jan 2025"
+                        points={[
+                            "Developed a Kotlin-based **MIPS assembly runtime environment** used annually by **over 1,000 students** for the Compilers Foundation course",
+                            "Engineered a **graphical command-line MIPS debugger** in Kotlin that supports stepping, breakpoints, I/O, and processor state visuals, reducing course Piazza queries by **60%**",
+                            "Built a compiler for an educational language implementing **20%** of C’s functionality, targeting MIPS assembly",
+                            "Created an ANTLR grammar for TopFormFlat file minimization (a bracket-nesting newline limit) by abstracting common CFG rules, expanding support from only C to **9 languages**",
+                        ]}
+                        tools={["Kotlin", "Lanterna", "Bazel", "MIPS"]}
+                    />
+                    <TimelineResumeItem
                         title="Software Developer"
                         bullet={
                             <Image
@@ -57,119 +191,26 @@ export default function Experiences() {
                                 src="/centre-wellington-logo.png"
                             />
                         }
-                    >
-                        <Text className="text-gray-50" c="dimmed" size="sm">
-                            Township of Centre Wellington - Source Water
-                            Protection
-                        </Text>
-                        <div className="flex gap-1 mt-2">
-                            <DateRangeBadge start="May 2024" end="Aug 2024" />
-                            <ResumeTopBadge text="Fergus, ON" />
-                        </div>
-                        <List
-                            listStyleType="disc"
-                            className="mt-4 text-gray-300 w-full"
-                            size="sm"
-                        >
-                            <List.Item>
-                                Developed features for an internal app used
-                                by&nbsp;
-                                <span className="bold-resume">
-                                    28 municipalities
-                                </span>{" "}
-                                to track and protect source water
-                            </List.Item>
-                            <List.Item>
-                                Redesigned{" "}
-                                <span className="bold-resume">
-                                    app security
-                                </span>{" "}
-                                and built an admin portal to dynamically create
-                                and manage permissions for&nbsp;
-                                <span className="bold-resume">300+ users</span>
-                            </List.Item>
-                            <List.Item>
-                                Implemented a live{" "}
-                                <span className="bold-resume">
-                                    collaborative text editor
-                                </span>
-                                , supporting custom embeds with{" "}
-                                <span className="bold-resume">20+ layouts</span>{" "}
-                                and reports using{" "}
-                                <span className="italic">
-                                    SignalR Websockets
-                                </span>{" "}
-                                and <span className="italic">Quill.js</span>
-                            </List.Item>
-                            <List.Item>
-                                Streamlined CI/CD with Typescript transpilation
-                                via Webpack, and automated testing with
-                                Playwright and xUnit
-                            </List.Item>
-                        </List>
-                        <div className="mt-6 flex flex-wrap gap-1">
-                            <ToolBadge tool="C#" />
-                            <ToolBadge tool="ASP.NET Core" />
-                            <ToolBadge tool="JQuery" />
-                            <ToolBadge tool="Typescript" />
-                            <ToolBadge tool="SignalR Websockets" />
-                            <ToolBadge tool="AUTH0" />
-                        </div>
-                    </Timeline.Item>
-                    <Timeline.Item
-                        title="Research Developer"
-                        bullet={
-                            <Image
-                                alt="University of Waterloo"
-                                className="object-contain"
-                                fill
-                                src="/uwaterloo-logo.png"
-                            />
-                        }
-                    >
-                        <Text className="text-gray-50" c="dimmed" size="sm">
-                            University of Waterloo
-                        </Text>
-                        <div className="flex gap-1 mt-2">
-                            <DateRangeBadge start="May 2024" end="Present" />
-                            <ResumeTopBadge text="Waterloo, ON" />
-                        </div>
-                        <List
-                            listStyleType="disc"
-                            className="mt-4 text-gray-300 w-full"
-                            size="sm"
-                        >
-                            <List.Item>
-                                Developed using Kotlin a MIPS Assembly{" "}
-                                <span className="bold-resume">
-                                    runtime environment
-                                </span>{" "}
-                                used annually by over{" "}
-                                <span className="bold-resume">
-                                    1,000 students
-                                </span>{" "}
-                                for the CS241 course
-                            </List.Item>
-                            <List.Item className="w-50">
-                                Integrated a text-based user interface debugger
-                                with{" "}
-                                <span className="bold-resume">Lanterna</span>,
-                                featuring a paneled layout that supports{" "}
-                                <span className="bold-resume">stepping</span>,{" "}
-                                <span className="bold-resume">breakpoints</span>
-                                ,{" "}
-                                <span className="bold-resume">watchpoints</span>
-                                , and data visualizations
-                            </List.Item>
-                        </List>
-                        <div className="mt-6 flex flex-wrap gap-1">
-                            <ToolBadge tool="Kotlin" />
-                            <ToolBadge tool="Lanterna" />
-                            <ToolBadge tool="Bash" />
-                            <ToolBadge tool="Bazel" />
-                        </div>
-                    </Timeline.Item>
-                    <Timeline.Item
+                        companyName="Township of Centre Wellington"
+                        location="Fergus, ON"
+                        startDate="May 2024"
+                        endDate="Aug 2024"
+                        points={[
+                            "Shipped **10 full-stack MVC pages** to manage and interact with **over 1,000,000 rows** of government data, using C# ASP.NET Core, Entity Framework, SQL Server, and JQuery",
+                            "Implemented policy-based authorization with controller middleware to enforce access across **28 municipalities**",
+                            "Improved communication for **100+ officials** by developing real-time notes using SignalR Websockets and Quill.js",
+                            "Integrated Github Actions for automated deployment to **Azure App Service**; improved build speed by **50%** via Webpack-based TypeScript transpilation and bundling",
+                        ]}
+                        tools={[
+                            "C#",
+                            "ASP.NET Core",
+                            "JQuery",
+                            "Typescript",
+                            "SignalR Websockets",
+                            "Auth0",
+                        ]}
+                    />
+                    <TimelineResumeItem
                         title="Data Science & Administrative Assistant"
                         bullet={
                             <Image
@@ -180,44 +221,22 @@ export default function Experiences() {
                                 src="/bio-ag-logo.png"
                             />
                         }
-                    >
-                        <Text className="text-gray-50" c="dimmed" size="sm">
-                            Bio-Ag Consultants & Distributors
-                        </Text>
-                        <div className="flex gap-1 mt-2">
-                            <DateRangeBadge start="May 2023" end="Aug 2023" />
-                            <ResumeTopBadge text="Wellesley, ON" />
-                        </div>
-                        <List
-                            listStyleType="disc"
-                            className="mt-4 text-gray-300 w-full"
-                            size="sm"
-                        >
-                            <List.Item>
-                                Implemented custom APIs to streamline access to
-                                company metrics, sales, and inventory from{" "}
-                                <span className="bold-resume">Dynamics365</span>{" "}
-                                . This initiative resulted in significant time
-                                savings, equivalent to{" "}
-                                <span className="bold-resume">3+ hours</span>{" "}
-                                per day
-                            </List.Item>
-                            <List.Item>
-                                Analyzed inventory datasets of over{" "}
-                                <span className="bold-resume">10,000</span>{" "}
-                                items to uncover{" "}
-                                <span className="bold-resume">$30,000</span> in
-                                losses due to manufacturing errors
-                            </List.Item>
-                        </List>
-                        <div className="mt-6 flex flex-wrap gap-1">
-                            <ToolBadge tool="Dynamics365" />
-                            <ToolBadge tool="Python" />
-                            <ToolBadge tool="Google Maps API" />
-                            <ToolBadge tool="Excel" />
-                        </div>
-                    </Timeline.Item>
-                    <Timeline.Item
+                        companyName="Bio-Ag Consultants & Distributors"
+                        location="Wellesley, ON"
+                        startDate="May 2023"
+                        endDate="Aug 2023"
+                        points={[
+                            "Implemented Python scripts to streamline access to company metrics, sales, and inventory from Dynamics365, saving **over 3 hours daily** of manual data logging",
+                            "Analyzed inventory datasets of over **10,000** items to uncover **$30,000** in losses due to manufacturing errors",
+                        ]}
+                        tools={[
+                            "Python",
+                            "Excel",
+                            "Dynamics365",
+                            "Google Maps API",
+                        ]}
+                    />
+                    <TimelineResumeItem
                         title="Sales Associate"
                         bullet={
                             <Image
@@ -228,29 +247,14 @@ export default function Experiences() {
                                 src="/mcphails-logo.webp"
                             />
                         }
-                        lineVariant="dotted"
-                    >
-                        <Text className="text-gray-50" c="dimmed" size="sm">
-                            McPhail&apos;s Cycle & Sports Ltd.
-                        </Text>
-                        <div className="flex gap-1 mt-2">
-                            <DateRangeBadge start="May 2021" end="Present" />
-                            <ResumeTopBadge text="Waterloo, ON" />
-                        </div>
-                        <List
-                            listStyleType="disc"
-                            className="mt-4 text-gray-300 w-full"
-                            size="sm"
-                        >
-                            <List.Item>
-                                Actively cater to customers with questions and
-                                concerns, and purchases from a selection of{" "}
-                                <span className="bold-resume">300+</span>{" "}
-                                different bicycles, parts, and hockey equipment
-                            </List.Item>
-                        </List>
-                        <div className="mt-6 flex flex-wrap gap-1"></div>
-                    </Timeline.Item>
+                        companyName="McPhail's Cycle & Sports Ltd."
+                        location="Waterloo, ON"
+                        startDate="May 2021"
+                        endDate="Present"
+                        points={[
+                            "Actively assist customers with purchases from a selection of **20** bicycle brands, parts, and hockey equipment",
+                        ]}
+                    />
                 </Timeline>
             </div>
         </section>

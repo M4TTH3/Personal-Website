@@ -9,7 +9,7 @@ const dev = process.env.NODE_ENV !== 'production';
 if (dev) config();
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.WSPORT || 3001;
 
 const server = http.createServer(app);
 

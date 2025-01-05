@@ -73,6 +73,35 @@ export default function Projects() {
         >
             <div className="flex-[1] flex flex-col gap-8 sm:gap-16">
                 <ProjectCard
+                    title="MIPS Debugger"
+                    tools={["Kotlin", "MVC", "Lanterna", "Bazel"]}
+                    image="/emulator.png"
+                    link="https://github.com/uw-pluverse/cs241-tools"
+                />
+                <ProjectCard
+                    title="Chess"
+                    tools={["C++", "XWindow", "Next.js", "Socket.io"]}
+                    image="/chessnew.png"
+                    link="/chess"
+                />
+            </div>
+            <div className="flex-[1] flex flex-col gap-8 sm:gap-16 sm:mt-12">
+                <ProjectCard
+                    title="Timestamp"
+                    tools={[
+                        "Android",
+                        "Jetpack Compose",
+                        "Kotlin",
+                        "Spring Boot",
+                        "Graphhopper",
+                        "Docker",
+                        "Nginx",
+                        "PostgreSQL",
+                    ]}
+                    image="/timestamp.png"
+                    link="https://git.uwaterloo.ca/mw2auyeu/team102-4"
+                />
+                <ProjectCard
                     title="Course Connect"
                     tools={[
                         "React Native",
@@ -83,32 +112,6 @@ export default function Projects() {
                     ]}
                     image="/courseconnect.png"
                     link="https://github.com/M4TTH3/CourseConnect"
-                />
-                <ProjectCard
-                    title="Study Where"
-                    tools={[
-                        "Next.js",
-                        "Flask",
-                        "MapBox",
-                        "CosmosDb",
-                        "Azure AD B2C",
-                    ]}
-                    image="/studywhere.png"
-                    link="https://studywhere.ca"
-                />
-            </div>
-            <div className="flex-[1] flex flex-col gap-8 sm:gap-16 sm:mt-12">
-                <ProjectCard
-                    title="Chess"
-                    tools={["C++", "XWindow", "Next.js", "Socket.io"]}
-                    image="/chess.png"
-                    link="/chess"
-                />
-                <ProjectCard
-                    title="Poster Scan"
-                    tools={["React", "Flask", "OpenCV", "QReader"]}
-                    image="/posterscan.png"
-                    link="https://github.com/M4TTH3/PosterScan"
                 />
             </div>
         </section>
