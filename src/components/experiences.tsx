@@ -141,7 +141,47 @@ export default function Experiences() {
                     }}
                 >
                     <TimelineResumeItem
-                        title="Software Developer"
+                        title="Software Engineer Intern"
+                        bullet={
+                            <Image
+                                alt="Mechanical Orchard"
+                                className="rounded-full"
+                                height={50}
+                                width={50}
+                                src="/mo-logo.jpeg"
+                            />
+                        }
+                        companyName="Mechanical Orchard"
+                        location="Waterloo, ON"
+                        startDate="Jan 2026"
+                        endDate="Present"
+                        points={[
+                            "Platform team (Modernizing Mainframes)",
+                        ]}
+                        tools={["Python", "Kotlin", "Rust", "Spring", "gRPC", "Docker"]}
+                    />
+                    <TimelineResumeItem
+                        title="Software Engineer Intern"
+                        bullet={
+                            <Image
+                                alt="Mechanical Orchard"
+                                className="rounded-full"
+                                height={50}
+                                width={50}
+                                src="/mo-logo.jpeg"
+                            />
+                        }
+                        companyName="Mechanical Orchard"
+                        location="Waterloo, ON"
+                        startDate="May 2025"
+                        endDate="Aug 2025"
+                        points={[
+                            "Code Generation team (Modernizing Mainframes)",
+                        ]}
+                        tools={["Python", "Kotlin", "Rust", "Spring", "gRPC", "Docker", "FastMCP"]}
+                    />
+                    <TimelineResumeItem
+                        title="Software Developer Intern"
                         bullet={
                             <Image
                                 alt="Ford Motors Company"
@@ -153,14 +193,14 @@ export default function Experiences() {
                         companyName="Ford Motors Company"
                         location="Waterloo, ON"
                         startDate="Jan 2025"
-                        endDate="Present"
+                        endDate="Apr 2025"
                         points={[
-                            "Developing mobile integration features for Ford's Infotainment system using Kotlin",
+                            "Projection team (CarPlay and Android Auto)",
                         ]}
-                        tools={["Kotlin", "AOSP"]}
+                        tools={["Java", "Kotlin", "AOSP"]}
                     />
                     <TimelineResumeItem
-                        title="Compilers Research Assistant"
+                        title="Compilers Testing Research Assistant"
                         bullet={
                             <Image
                                 alt="University of Waterloo"
@@ -174,15 +214,12 @@ export default function Experiences() {
                         startDate="May 2024"
                         endDate="Jan 2025"
                         points={[
-                            "Developed a Kotlin-based **MIPS assembly runtime environment** used annually by **over 1,000 students** for the Compilers Foundation course",
-                            "Engineered a **graphical command-line MIPS debugger** in Kotlin that supports stepping, breakpoints, I/O, and processor state visuals, reducing course Piazza queries by **60%**",
-                            "Built a compiler for an educational language implementing **20%** of C’s functionality, targeting MIPS assembly",
-                            "Created an ANTLR grammar for TopFormFlat file minimization (a bracket-nesting newline limit) by abstracting common CFG rules, expanding support from only C to **9 languages**",
+                            "MIPS Assembly Runtime & Debugger"
                         ]}
                         tools={["Kotlin", "Lanterna", "Bazel", "MIPS"]}
                     />
                     <TimelineResumeItem
-                        title="Software Developer"
+                        title="Software Developer Intern"
                         bullet={
                             <Image
                                 alt="Centre Wellington"
@@ -196,22 +233,18 @@ export default function Experiences() {
                         startDate="May 2024"
                         endDate="Aug 2024"
                         points={[
-                            "Shipped **10 full-stack MVC pages** to manage and interact with **over 1,000,000 rows** of government data, using C# ASP.NET Core, Entity Framework, SQL Server, and JQuery",
-                            "Implemented policy-based authorization with controller middleware to enforce access across **28 municipalities**",
-                            "Improved communication for **100+ officials** by developing real-time notes using SignalR Websockets and Quill.js",
-                            "Integrated Github Actions for automated deployment to **Azure App Service**; improved build speed by **50%** via Webpack-based TypeScript transpilation and bundling",
+                            "LSWIMS (Local Source Water Information Management System)"
                         ]}
                         tools={[
                             "C#",
+                            "Typescript",
                             "ASP.NET Core",
                             "JQuery",
-                            "Typescript",
-                            "SignalR Websockets",
                             "Auth0",
                         ]}
                     />
                     <TimelineResumeItem
-                        title="Data Science & Administrative Assistant"
+                        title="Data Science Intern"
                         bullet={
                             <Image
                                 alt="Bio-Ag Consultants & Distributors"
@@ -226,8 +259,7 @@ export default function Experiences() {
                         startDate="May 2023"
                         endDate="Aug 2023"
                         points={[
-                            "Implemented Python scripts to streamline access to company metrics, sales, and inventory from Dynamics365, saving **over 3 hours daily** of manual data logging",
-                            "Analyzed inventory datasets of over **10,000** items to uncover **$30,000** in losses due to manufacturing errors",
+                            "Internal Sales & Inventory Management"
                         ]}
                         tools={[
                             "Python",
@@ -252,7 +284,7 @@ export default function Experiences() {
                         startDate="May 2021"
                         endDate="Present"
                         points={[
-                            "Actively assist customers with purchases from a selection of **20** bicycle brands, parts, and hockey equipment",
+                            "Bikes & Hockey !!!",
                         ]}
                     />
                 </Timeline>

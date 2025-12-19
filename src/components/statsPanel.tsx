@@ -190,12 +190,12 @@ export default async function StatsPanel(props: HTMLProps<HTMLDivElement>) {
             icon: faStrava,
             icon_link: "https://www.strava.com/athletes/70090884",
         },
-        {
-            label: "Leetcode",
-            value: "LeetcodeDisplay",
-            icon: faCode,
-            icon_link: "https://leetcode.com/m4tth3/",
-        },
+        // {
+        //     label: "Leetcode",
+        //     value: "LeetcodeDisplay",
+        //     icon: faCode,
+        //     icon_link: "https://leetcode.com/m4tth3/",
+        // },
     ];
 
     return (

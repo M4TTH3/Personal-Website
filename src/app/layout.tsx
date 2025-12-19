@@ -13,9 +13,30 @@ import "@/styles/globals.css";
 const ubuntu = Ubuntu({ weight: ["400", "700"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Matthew Au-Yeung Personal Site",
-    description:
-        "I am Matthew Au-Yeung, a 3A Computer Science student at the University of Waterloo.",
+    title: "Matthew Au-Yeung - Personal Website",
+    description: "Hi, I'm Matthew, a 4th year Computer Science student at the University of Waterloo. I love to learn new things, and I'm always looking for new challenges. I'm interested in distributed systems, languages & compilers, and AI. I'm currently an intern at Mechanical Orchard, working on creating tools and a platform for quickly and safely modernizing mainframes.",
+    keywords: ["Matthew Au-Yeung", "Computer Science", "University of Waterloo", "Mechanical Orchard", "Modernizing Mainframes"],
+    authors: [{ name: "Matthew Au-Yeung", url: "https://mattheway.com" }],
+    creator: "Matthew Au-Yeung",
+    publisher: "Matthew Au-Yeung",
+    applicationName: "Matthew Au-Yeung Personal Website",
+    openGraph: {
+        title: "Matthew Au-Yeung Personal Website",
+        description: "Hi, I'm Matthew, a 4th year Computer Science student at the University of Waterloo. I love to learn new things, and I'm always looking for new challenges. I'm interested in distributed systems, languages & compilers, and AI.",
+        url: "https://mattheway.com",
+        siteName: "Matthew Au-Yeung Personal Website",
+        images: [
+            {
+                url: "/photo.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Matthew Au-Yeung",
+            },
+        ],
+    },
+    icons: {
+        icon: "/favicon.ico",
+    },
 };
 
 export default function RootLayout({
