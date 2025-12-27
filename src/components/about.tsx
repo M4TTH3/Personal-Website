@@ -62,7 +62,7 @@ export default function About() {
                             <h2 className="text-2xl font-bold text-gradient mb-4">About Me</h2>
                             <p className="text-gray-300 leading-relaxed">
                                 Hi, I'm Matthew, a 4th year Computer Science student at the University of Waterloo.
-                                I love to learn new things, and I'm always looking for new challenges
+                                I love to learn new things, and I'm always looking for new challenges.
                                 I'm interested in distributed systems, languages & compilers, and AI.
                                 <br /> <br />
                                 I'm currently an intern at Mechanical Orchard, working on creating tools
