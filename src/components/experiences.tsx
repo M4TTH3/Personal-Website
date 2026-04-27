@@ -141,6 +141,25 @@ export default function Experiences() {
                     }}
                 >
                     <TimelineResumeItem
+                        title="Incoming Software Engineer Intern"
+                        bullet={
+                            <Image
+                                alt="Atomic Semi"
+                                className="rounded-full"
+                                height={50}
+                                width={50}
+                                src="/atomic_semi_logo.jpeg"
+                            />
+                        }
+                        companyName="Atomic Semi"
+                        location="San Francisco, CA"
+                        startDate="May 2026"
+                        endDate="Aug 2026"
+                        points={[
+                            "Fab Management Software",
+                        ]}
+                    />
+                    <TimelineResumeItem
                         title="Software Engineer Intern"
                         bullet={
                             <Image
@@ -154,11 +173,30 @@ export default function Experiences() {
                         companyName="Mechanical Orchard"
                         location="Waterloo, ON"
                         startDate="Jan 2026"
-                        endDate="Present"
+                        endDate="Apr 2026"
                         points={[
-                            "Platform team (Modernizing Mainframes)",
+                            "Code Generation team (Modernizing Mainframes)",
                         ]}
-                        tools={["Python", "Kotlin", "Rust", "Spring", "gRPC", "Docker"]}
+                        tools={["Java", "Compilers", "CVC5", "Claude"]}
+                    />
+                    <TimelineResumeItem
+                        title="Compilers & Concurrency Research Assistant"
+                        bullet={
+                            <Image
+                                alt="University of Waterloo"
+                                className="object-contain"
+                                fill
+                                src="/uwaterloo-logo.png"
+                            />
+                        }
+                        companyName="University of Waterloo"
+                        location="Waterloo, ON"
+                        startDate="Sept 2025"
+                        endDate="Apr 2026"
+                        points={[
+                            "Cforall Compiler & Concurrency Primitives",
+                        ]}
+                        tools={["Cforall", "C++", "Compilers", "Concurrency"]}
                     />
                     <TimelineResumeItem
                         title="Software Engineer Intern"
