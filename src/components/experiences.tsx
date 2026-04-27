@@ -186,6 +186,7 @@ export default function Experiences() {
                                 alt="University of Waterloo"
                                 className="object-contain"
                                 fill
+                                sizes="60px"
                                 src="/uwaterloo-logo.png"
                             />
                         }
@@ -225,6 +226,7 @@ export default function Experiences() {
                                 alt="Ford Motors Company"
                                 className="object-contain"
                                 fill
+                                sizes="60px"
                                 src="/ford-motors.png"
                             />
                         }
@@ -244,6 +246,7 @@ export default function Experiences() {
                                 alt="University of Waterloo"
                                 className="object-contain"
                                 fill
+                                sizes="60px"
                                 src="/uwaterloo-logo.png"
                             />
                         }
@@ -263,6 +266,7 @@ export default function Experiences() {
                                 alt="Centre Wellington"
                                 className="object-contain"
                                 fill
+                                sizes="60px"
                                 src="/centre-wellington-logo.png"
                             />
                         }

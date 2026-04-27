@@ -10,6 +10,7 @@ interface ProjectCardProps {
     tools: string[];
     image: string | IconDefinition;
     link: string;
+    priority?: boolean;
 }
 
 const ProjectCard = ({
@@ -17,6 +18,7 @@ const ProjectCard = ({
     tools,
     image,
     link,
+    priority,
     ...props
 }: ProjectCardProps & HTMLProps<HTMLAnchorElement>) => {
     return (
@@ -48,7 +50,9 @@ const ProjectCard = ({
                             src={image}
                             alt={title}
                             fill
+                            sizes="(max-width: 640px) 90vw, 45vw"
                             className="object-contain"
+                            priority={priority}
                         />
                     ) : (
                         <FontAwesomeIcon
@@ -77,12 +81,14 @@ export default function Projects() {
                     tools={["Kotlin", "MVC", "Lanterna", "Bazel"]}
                     image="/emulator.png"
                     link="https://github.com/uw-pluverse/cs241-tools"
+                    priority
                 />
                 <ProjectCard
                     title="Chess"
                     tools={["C++", "XWindow", "Next.js", "Socket.io"]}
                     image="/chessnew.png"
                     link="/chess"
+                    priority
                 />
             </div>
             <div className="flex-[1] flex flex-col gap-8 sm:gap-16 sm:mt-12">
