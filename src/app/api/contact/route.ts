@@ -1,11 +1,13 @@
-import Email from "@/models/Email";
+import getDb from "@/database/db";
+import type Email from "@/models/Email";
 import { InferCreationAttributes } from "sequelize";
 
 export async function POST(req: Request) {
 
     try {
+        const { Email } = await getDb();
         const { name, email: sender, message } = (await req.json()) as InferCreationAttributes<Email>;
-        const email = Email.create({
+        const email = await Email.create({
             name: name,
             email: sender,
             message: message,

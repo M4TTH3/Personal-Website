@@ -1,0 +1,10 @@
+.env*
+.git
+.jj
+.github
+.next
+node_modules
+websockets/node_modules
+Dockerfile
+.dockerignore
+README.md

@@ -3,9 +3,9 @@ import {
     DataTypes,
     InferAttributes,
     InferCreationAttributes,
-    Model
+    Model,
+    Sequelize
 } from "sequelize";
-import sequelize from "@/database/db";
 import { Stats } from "@/types/stats";
 
 class StravaStat extends Model<
@@ -18,7 +18,7 @@ class StravaStat extends Model<
     declare updatedAt: CreationOptional<Date>;
 }
 
-StravaStat.init(
+export const initStravaStat = (sequelize: Sequelize) => StravaStat.init(
     {
         id: {
             type: DataTypes.INTEGER,

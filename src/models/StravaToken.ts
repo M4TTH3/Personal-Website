@@ -1,5 +1,4 @@
-import { DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
-import sequelize from "@/database/db";
+import { DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
 
 class StravaToken extends Model<
     InferAttributes<StravaToken>,
@@ -13,7 +12,7 @@ class StravaToken extends Model<
     declare expiresAt: number;
 }
 
-StravaToken.init({
+export const initStravaToken = (sequelize: Sequelize) => StravaToken.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true

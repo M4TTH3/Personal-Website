@@ -4,8 +4,8 @@ import {
     InferAttributes,
     InferCreationAttributes,
     Model,
+    Sequelize,
 } from "sequelize";
-import sequelize from "@/database/db";
 import { Stats } from "@/types/stats";
 
 class Email extends Model<
@@ -20,7 +20,7 @@ class Email extends Model<
     declare updatedAt: CreationOptional<Date>;
 }
 
-Email.init(
+export const initEmail = (sequelize: Sequelize) => Email.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -50,7 +50,5 @@ Email.init(
         timestamps: true,
     }
 );
-
-sequelize.sync();
 
 export default Email;

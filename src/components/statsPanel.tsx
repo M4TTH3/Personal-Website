@@ -1,5 +1,5 @@
-import StravaStat from "@/models/StravaStat";
-import StravaToken from "@/models/StravaToken";
+import getDb from "@/database/db";
+import type StravaToken from "@/models/StravaToken";
 import {
     STRAVA_REFRESH_ENDPOINT,
     StravaRefreshResponse,
@@ -51,6 +51,7 @@ const updateRefreshToken = async (model: StravaToken): Promise<void> => {
 };
 
 const getStravaContents = async (): Promise<Stats> => {
+    const { StravaStat, StravaToken } = await getDb();
     const model = await StravaToken.findOne();
     if (!model) throw new Error("No Strava token found");
 

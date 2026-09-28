@@ -1,6 +1,4 @@
-FROM node:20-alpine AS base
-
-RUN npm install -g npm@latest
+FROM node:24-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -23,12 +21,9 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
 
-# IMPORTANT! Build from Host Network
-# ARG DATABASE_URL
-# ENV DATABASE_URL=$DATABASE_URL
-
-# ARG NEXT_PUBLIC_SOCKET_URL
-# ENV NEXT_PUBLIC_SOCKET_URL=$NEXT_PUBLIC_SOCKET_URL
+# Inlined into the client bundle at build time
+ARG NEXT_PUBLIC_SOCKET_URL
+ENV NEXT_PUBLIC_SOCKET_URL=$NEXT_PUBLIC_SOCKET_URL
 
 RUN npm run build
 

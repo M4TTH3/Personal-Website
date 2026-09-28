@@ -1,6 +1,6 @@
 "use client";
 
-import Email from "@/models/Email";
+import type Email from "@/models/Email";
 import { faEnvelope, faSignature } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Textarea, TextInput } from "@mantine/core";
