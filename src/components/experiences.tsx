@@ -141,23 +141,44 @@ export default function Experiences() {
                     }}
                 >
                     <TimelineResumeItem
-                        title="Incoming Software Engineer Intern"
+                        title="Software Engineer Intern"
                         bullet={
                             <Image
-                                alt="Atomic Semi"
+                                alt="Mechanical Orchard"
                                 className="rounded-full"
                                 height={50}
                                 width={50}
-                                src="/atomic_semi_logo.jpeg"
+                                src="/mo-logo.jpeg"
                             />
                         }
-                        companyName="Atomic Semi"
+                        companyName="Mechanical Orchard"
+                        location="Remote"
+                        startDate="Sept 2026"
+                        endDate="Present"
+                        points={[
+                            "Code Generation team (Modernizing Mainframes)",
+                        ]}
+                        tools={["Java", "Compilers"]}
+                    />
+                    <TimelineResumeItem
+                        title="Software Engineer Intern"
+                        bullet={
+                            <Image
+                                alt="Fab2"
+                                className="rounded-full"
+                                height={50}
+                                width={50}
+                                src="/fab2-logo.png"
+                            />
+                        }
+                        companyName="Fab2 (formerly Atomic Semi)"
                         location="San Francisco, CA"
                         startDate="May 2026"
                         endDate="Aug 2026"
                         points={[
-                            "Fab Management Software",
+                            "Deployment Infrastructure & LLM Gateway",
                         ]}
+                        tools={["Go", "Rust", "gRPC", "S3", "PostgreSQL"]}
                     />
                     <TimelineResumeItem
                         title="Software Engineer Intern"
@@ -180,7 +201,7 @@ export default function Experiences() {
                         tools={["Java", "Compilers", "CVC5", "Claude"]}
                     />
                     <TimelineResumeItem
-                        title="Compilers & Concurrency Research Assistant"
+                        title="Compilers Research Assistant"
                         bullet={
                             <Image
                                 alt="University of Waterloo"
@@ -223,14 +244,14 @@ export default function Experiences() {
                         title="Software Developer Intern"
                         bullet={
                             <Image
-                                alt="Ford Motors Company"
+                                alt="Ford Motor Company"
                                 className="object-contain"
                                 fill
                                 sizes="60px"
                                 src="/ford-motors.png"
                             />
                         }
-                        companyName="Ford Motors Company"
+                        companyName="Ford Motor Company"
                         location="Waterloo, ON"
                         startDate="Jan 2025"
                         endDate="Apr 2025"
