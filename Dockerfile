@@ -27,21 +27,6 @@ ENV NEXT_PUBLIC_SOCKET_URL=$NEXT_PUBLIC_SOCKET_URL
 
 RUN npm run build
 
-# Websocket server
-FROM base AS chess-builder
-
-# Update and install necessary tools
-RUN apk add --no-cache \
-    g++ \
-    make \
-    libx11-dev
-
-# Set the working directory
-WORKDIR /app
-
-COPY websockets/chess/* ./
-RUN make
-
 FROM base AS socket-builder
 
 WORKDIR /app
@@ -63,12 +48,10 @@ RUN adduser --system --uid 1001 nextjs
 # Get the websockets folder
 COPY websockets/server.mjs ./websockets/
 COPY websockets/sockets ./websockets/sockets
-RUN rm -rf ./websockets/chess
+# Prebuilt engine binaries; the server picks the one for this platform
+COPY websockets/chess ./websockets/chess
 
-COPY --from=chess-builder /app/chess ./websockets/
 COPY --from=socket-builder /app/node_modules ./websockets/node_modules/
-
-RUN chmod +x ./websockets/chess
 
 # Main Next.js files
 COPY --from=builder /app/public ./public

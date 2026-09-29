@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:ws": "node --watch websockets/server.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

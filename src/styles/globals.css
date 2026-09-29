@@ -38,27 +38,39 @@ body {
 }
 
 /* Contact form inputs: Mantine's light-theme defaults glare on the dark background */
-#ContactForm .mantine-Input-input {
+.dark-inputs .mantine-Input-input {
     background: rgb(255 255 255 / 0.04);
     backdrop-filter: blur(6px);
     color: #e5e7eb;
     font-family: inherit;
 }
 
-#ContactForm .mantine-Input-input:not([data-error]) {
+.dark-inputs .mantine-Input-input:not([data-error]) {
     border-color: #374151;
 }
 
-#ContactForm .mantine-Input-input:not([data-error]):focus {
+.dark-inputs .mantine-Input-input:not([data-error]):focus {
     border-color: #9ca3af;
 }
 
-#ContactForm .mantine-Input-input::placeholder {
+.dark-inputs .mantine-Input-input::placeholder {
     color: #6b7280;
 }
 
-#ContactForm .mantine-Input-section {
+.dark-inputs .mantine-Input-section {
     color: #6b7280;
+}
+
+/* Mantine dropdowns default to the light theme */
+.dark-dropdown {
+    background: #111827;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+.dark-dropdown .mantine-Select-option:hover,
+.dark-dropdown .mantine-Select-option[data-combobox-selected] {
+    background: #1f2937;
 }
 
 .border-gradient {
@@ -106,4 +118,68 @@ input:is(:-webkit-autofill, :autofill) {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
+}
+
+/* Board squares; highlights are layered on top with box-shadow */
+.chess-square {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.chess-square.light { background: #c3cad5; }
+.chess-square.dark { background: #5d6878; }
+.chess-square.last-move { box-shadow: inset 0 0 0 100vmax rgb(250 204 21 / 0.28); }
+.chess-square.selected { box-shadow: inset 0 0 0 100vmax rgb(129 140 248 / 0.45); }
+.chess-square.in-check { background-image: radial-gradient(circle, rgb(239 68 68 / 0.9) 0%, rgb(239 68 68 / 0.35) 45%, transparent 72%); }
+
+.chess-square .coord {
+    position: absolute;
+    font-size: clamp(8px, 1.4vw, 12px);
+    font-weight: 700;
+    line-height: 1;
+}
+.chess-square.light .coord { color: #5d6878; }
+.chess-square.dark .coord { color: #c3cad5; }
+.chess-square .coord.rank { top: 4px; left: 4px; }
+.chess-square .coord.file { bottom: 3px; right: 5px; }
+
+.chess-piece {
+    font-size: clamp(28px, 7vw, 56px);
+    line-height: 1;
+    transition: transform 150ms ease;
+}
+.chess-piece.white { color: #f8fafc; text-shadow: 0 1px 0 #1e293b, 0 2px 6px rgb(15 23 42 / 0.55); }
+.chess-piece.black { color: #111827; text-shadow: 0 1px 0 rgb(255 255 255 / 0.35), 0 2px 6px rgb(15 23 42 / 0.35); }
+.chess-piece.lifted { transform: scale(1.12) translateY(-3px); }
+
+/* Full-square layer holding a piece, so translating by 100% moves exactly one square */
+.chess-piece-layer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Slide from the square the piece came from; --dx / --dy are in squares */
+.chess-piece-layer.moving {
+    z-index: 10;
+    animation: chess-slide 220ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+@keyframes chess-slide {
+    from { transform: translate(calc(var(--dx) * 100%), calc(var(--dy) * 100%)); }
+    to { transform: none; }
+}
+
+.chess-overlay { animation: chess-fade 300ms ease; }
+@keyframes chess-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chess-piece-layer.moving, .chess-overlay { animation: none; }
 }

@@ -73,7 +73,7 @@ export default function Contact() {
                 <div className="flex-[1] py-2">
                     <form
                         id="ContactForm"
-                        className="flex flex-col gap-5 mx-auto"
+                        className="dark-inputs flex flex-col gap-5 mx-auto"
                         onSubmit={form.onSubmit(handleSubmit)}
                     >
                         <TextInput

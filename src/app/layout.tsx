@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import Galaxy from "@/components/galaxy";
-import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications"
 
 import "@mantine/core/styles.css"; // Ensure it's before our styles
@@ -49,10 +49,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
-            <head>
-                <ColorSchemeScript />
-            </head>
+        // Set Mantine's colour scheme up front instead of via ColorSchemeScript,
+        // whose inline <script> React 19 warns about
+        <html lang="en" data-mantine-color-scheme="light" suppressHydrationWarning>
             <body className={`${ubuntu.className} overflow-x-hidden w-dvw h-dvh`}>
                 <div className="relative">
                     <Galaxy />
