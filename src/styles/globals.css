@@ -28,10 +28,37 @@ body {
 }
 
 .text-gradient {
-    background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), 50%, var(--gradient-1));
+    background: linear-gradient(180deg, var(--gradient-2) 35%, var(--gradient-1));
+    /* On inline text, restart the gradient on each wrapped line */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
+}
+
+/* Contact form inputs: Mantine's light-theme defaults glare on the dark background */
+#ContactForm .mantine-Input-input {
+    background: rgb(255 255 255 / 0.04);
+    backdrop-filter: blur(6px);
+    color: #e5e7eb;
+    font-family: inherit;
+}
+
+#ContactForm .mantine-Input-input:not([data-error]) {
+    border-color: #374151;
+}
+
+#ContactForm .mantine-Input-input:not([data-error]):focus {
+    border-color: #9ca3af;
+}
+
+#ContactForm .mantine-Input-input::placeholder {
+    color: #6b7280;
+}
+
+#ContactForm .mantine-Input-section {
+    color: #6b7280;
 }
 
 .border-gradient {

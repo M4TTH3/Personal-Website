@@ -1,4 +1,5 @@
 import About from "@/components/about";
+import CommandPalette from "@/components/commandPalette";
 import Contact from "@/components/contact";
 import Experiences from "@/components/experiences";
 import Footer from "@/components/footer";
@@ -16,6 +17,7 @@ export default function Root() {
                 <NavigationProgress color="gray" />
                 <NavWatch/>
                 <Navbar />
+                <CommandPalette />
             </header>
             <main className="">
                 <Home />

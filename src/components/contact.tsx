@@ -58,8 +58,6 @@ export default function Contact() {
         }
     };
 
-    const inputClassName = "bg-opacity-10 bg-white text-gray-200 font-bold";
-
     return (
         <section id="Contact" className="mt-5 mb-16 sm:my-32">
             <div className="container px-4 lg:px-2 flex flex-col sm:flex-row gap-10 text-white">
@@ -85,10 +83,6 @@ export default function Contact() {
                             size="lg"
                             radius="md"
                             placeholder="Name"
-                            classNames={{
-                                input: inputClassName,
-                            }}
-                            color="blue"
                             rightSection={
                                 <FontAwesomeIcon icon={faSignature} />
                             }
@@ -101,9 +95,6 @@ export default function Contact() {
                             size="lg"
                             radius="md"
                             placeholder="Email"
-                            classNames={{
-                                input: inputClassName,
-                            }}
                             rightSection={<FontAwesomeIcon icon={faEnvelope} />}
                         />
                         <Textarea
@@ -114,15 +105,12 @@ export default function Contact() {
                             radius="md"
                             placeholder="Message"
                             rows={8}
-                            classNames={{
-                                input: inputClassName,
-                            }}
                         />
                         <Button
                             type="submit"
                             size="lg"
                             radius="md"
-                            className={`bg-gray-800 w-32 shadow-gray-400 shadow-md`}
+                            className="w-32 bg-gray-100 text-black hover:bg-white transition-colors"
                         >
                             Submit
                         </Button>

@@ -5,6 +5,7 @@ import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDisclosure } from "@mantine/hooks";
 import { Burger, Button, Modal, NavLink } from "@mantine/core";
+import { spotlight } from "@mantine/spotlight";
 
 const navContext = createContext<{
     scrollToId: (e: React.MouseEvent, id: string) => void;
@@ -23,7 +24,15 @@ const DesktopNavBar = () => {
             >
                 Matthew Au-Yeung
             </a>
-            <div className="flex gap-3 lg:gap-5">
+            <div className="flex gap-3 lg:gap-5 items-center">
+                <button
+                    onClick={spotlight.open}
+                    className="flex items-center gap-2 px-2 py-0.5 rounded-md border border-gray-600 text-sm text-gray-400 hover:border-gray-300 hover:text-gray-200 transition-colors"
+                    aria-label="Search"
+                >
+                    Search
+                    <kbd className="text-xs text-gray-500">⌘K</kbd>
+                </button>
                 <a href="#Projects" onClick={(e) => scrollToId(e, "Projects")}>
                     Projects
                 </a>
@@ -35,14 +44,6 @@ const DesktopNavBar = () => {
                 </a>
                 <a href="#Contact" onClick={(e) => scrollToId(e, "Contact")}>
                     Contact
-                </a>
-                <a
-                    href="/Resume.pdf"
-                    target="_blank"
-                    title="Resume"
-                    className="text-gradient"
-                >
-                    Resumé
                 </a>
             </div>
         </div>
